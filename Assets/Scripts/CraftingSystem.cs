@@ -76,13 +76,12 @@ public class CraftingSystem : MonoBehaviour
 
         StartCoroutine(calcualte());
 
-        RefeshNeededItems();
+
     }
 
     void Update()
     {
-        Debug.Log(AxeBLP);
-        RefeshNeededItems();
+        // RefeshNeededItems();
         if (Input.GetKeyDown(KeyCode.C) && !isOpen)
         {
 
@@ -103,8 +102,9 @@ public class CraftingSystem : MonoBehaviour
 
     public IEnumerator calcualte()
     {
-        yield return new WaitForSeconds(1f);
+        yield return 0;
         InventorySystem.Instance.ReCalculeList();
+        RefeshNeededItems();
     }
 
     public void RefeshNeededItems()
