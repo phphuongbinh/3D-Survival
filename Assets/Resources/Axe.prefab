@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1691662839604042071}
   - component: {fileID: 1727084631327708107}
   - component: {fileID: 252610753541737570}
+  - component: {fileID: 3488570505480114615}
   m_Layer: 5
   m_Name: Axe
   m_TagString: Untagged
@@ -102,3 +103,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
+--- !u!114 &3488570505480114615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022934820123215904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba0ceafad8e254449835a585aa1009a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isTrashable: 0
+  thisName: Axe
+  thisDescription: "r\xECu \u0111\u1EC3 \u0111\u1ED1n c\u1EE7i"
+  thisFunctionality: "1 c\xE1i r\xECu \u0111\u1EC3 ch\u1EB7t c\xE2y"
+  isConsumable: 0
+  healthEffect: 0
+  caloriesEffect: 0
+  hydrationEffect: 0

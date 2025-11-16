@@ -9,6 +9,7 @@ public class InventorySystem : MonoBehaviour
 
     public static InventorySystem Instance { get; set; }
 
+    public GameObject ItemInfoUI;
     public GameObject inventoryScreenUI;
     public List<GameObject> slotList = new List<GameObject>();
     public List<string> itemList = new List<string>();
