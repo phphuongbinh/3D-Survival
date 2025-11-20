@@ -115,11 +115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0ceafad8e254449835a585aa1009a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isTrashable: 0
+  isTrashable: 1
   thisName: Stick
   thisDescription: "M\u1ED9t que g\u1ED7"
   thisFunctionality: "M\u1ED9t nh\xE0nh c\xE2y r\u1EDBt b\xEAn \u0111\u01B0\u1EDDng "
-  isConsumable: 0
-  healthEffect: 0
-  caloriesEffect: 0
-  hydrationEffect: 0
+  isConsumable: 1
+  healthEffect: 10
+  caloriesEffect: 100
+  hydrationEffect: 2

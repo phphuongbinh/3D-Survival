@@ -74,7 +74,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             {
                 DestroyImmediate(gameObject);
                 InventorySystem.Instance.ReCalculeList();
-                // CraftingSystem.Instance.RefreshNeededItems();
+                CraftingSystem.instance.RefeshNeededItems();
             }
         }
     }
@@ -103,11 +103,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if ((healthBeforeConsumption + healthEffect) > maxHealth)
             {
-                // PlayerState.Instance.setHealth(maxHealth);
+                PlayerState.Instance.setHealth(maxHealth);
             }
             else
             {
-                // PlayerState.Instance.setHealth(healthBeforeConsumption + healthEffect);
+                PlayerState.Instance.setHealth(healthBeforeConsumption + healthEffect);
             }
         }
     }
@@ -124,11 +124,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if ((caloriesBeforeConsumption + caloriesEffect) > maxCalories)
             {
-                // PlayerState.Instance.setCalories(maxCalories);
+                PlayerState.Instance.setCalories(maxCalories);
             }
             else
             {
-                // PlayerState.Instance.setCalories(caloriesBeforeConsumption + caloriesEffect);
+                PlayerState.Instance.setCalories(caloriesBeforeConsumption + caloriesEffect);
             }
         }
     }
@@ -145,11 +145,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if ((hydrationBeforeConsumption + hydrationEffect) > maxHydration)
             {
-                // PlayerState.Instance.setHydration(maxHydration);
+                PlayerState.Instance.setHydration(maxHydration);
             }
             else
             {
-                // PlayerState.Instance.setHydration(hydrationBeforeConsumption + hydrationEffect);
+                PlayerState.Instance.setHydration(hydrationBeforeConsumption + hydrationEffect);
             }
         }
     }
