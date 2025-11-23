@@ -25,6 +25,7 @@ public class InventorySystem : MonoBehaviour
     public Image pickupImage;
 
 
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
