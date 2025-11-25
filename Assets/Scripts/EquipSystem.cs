@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,9 @@ public class EquipSystem : MonoBehaviour
 
     public int selectedNumber = -1;
     public GameObject selectedItem;
+
+    public GameObject toolHolder;
+    public GameObject selectedItemModel;
 
     void Awake()
     {
@@ -90,6 +94,8 @@ public class EquipSystem : MonoBehaviour
                 selectedItem = GetSelectedItem(number);
                 selectedItem.GetComponent<InventoryItem>().isSelected = true;
 
+                SetEquipModel(selectedItem);
+
                 // Changing the color
                 foreach (Transform child in numbersHolder.transform)
                 {
@@ -106,6 +112,12 @@ public class EquipSystem : MonoBehaviour
                     selectedItem.gameObject.GetComponent<InventoryItem>().isSelected = false;
                     selectedItem = null;
                 }
+
+                if (selectedItemModel != null)
+                {
+                    DestroyImmediate(selectedItemModel.gameObject);
+                    selectedItemModel = null;
+                }
                 // Changing the color
                 foreach (Transform child in numbersHolder.transform)
                 {
@@ -113,6 +125,21 @@ public class EquipSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SetEquipModel(GameObject selectedItem)
+    {
+        if (selectedItemModel != null)
+        {
+            DestroyImmediate(selectedItemModel.gameObject);
+            selectedItemModel = null;
+        }
+
+        string selectedItemName = selectedItem.name.Replace("(Clone)", "");
+        selectedItemModel = Instantiate(Resources.Load<GameObject>(selectedItemName + "_Model"),
+        new Vector3(0.8f, 0.6f, 2), Quaternion.Euler(-110, -120, 0));
+        selectedItemModel.transform.SetParent(toolHolder.transform, false);
+
     }
 
     GameObject GetSelectedItem(int slotNumber)
