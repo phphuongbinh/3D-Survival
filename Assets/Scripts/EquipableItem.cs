@@ -22,7 +22,15 @@ public class EquipableItem : MonoBehaviour
             && CraftingSystem.instance.isOpen == false
             && SelectionManager.instance.handIsVisible == false)
         {
+
+            GameObject selectedTree = SelectionManager.instance.selectedTree;
+
+            if (selectedTree != null)
+            {
+                selectedTree.GetComponent<ChoppableTree>().GetHit();
+            }
             animator.SetTrigger("hit");
+
         }
     }
 }
