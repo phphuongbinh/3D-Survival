@@ -23,14 +23,18 @@ public class EquipableItem : MonoBehaviour
             && SelectionManager.instance.handIsVisible == false)
         {
 
-            GameObject selectedTree = SelectionManager.instance.selectedTree;
 
-            if (selectedTree != null)
-            {
-                selectedTree.GetComponent<ChoppableTree>().GetHit();
-            }
             animator.SetTrigger("hit");
 
+        }
+    }
+    void GetHit()
+    {
+        GameObject selectedTree = SelectionManager.instance.selectedTree;
+
+        if (selectedTree != null)
+        {
+            selectedTree.GetComponent<ChoppableTree>().GetHit();
         }
     }
 }

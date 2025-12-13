@@ -5433,6 +5433,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2101912825}
     m_Modifications:
+    - target: {fileID: 4635974173610196163, guid: 17117691e315d964a84509d883aec99f, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1144587780}
     - target: {fileID: 6111297406522395325, guid: 17117691e315d964a84509d883aec99f, type: 3}
       propertyPath: m_Name
       value: Axe_Model
@@ -5489,6 +5493,11 @@ PrefabInstance:
 --- !u!4 &1144587778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6882731890377805831, guid: 17117691e315d964a84509d883aec99f, type: 3}
+  m_PrefabInstance: {fileID: 1144587777}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1144587780 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9021729323689755687, guid: 17117691e315d964a84509d883aec99f, type: 3}
   m_PrefabInstance: {fileID: 1144587777}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1153549381
