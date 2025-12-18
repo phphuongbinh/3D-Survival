@@ -22,10 +22,8 @@ public class EquipableItem : MonoBehaviour
             && CraftingSystem.instance.isOpen == false
             && SelectionManager.instance.handIsVisible == false)
         {
-
-
+            SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
             animator.SetTrigger("hit");
-
         }
     }
     void GetHit()
@@ -34,7 +32,15 @@ public class EquipableItem : MonoBehaviour
 
         if (selectedTree != null)
         {
+            SoundManager.Instance.PlaySound(SoundManager.Instance.chopSound);
             selectedTree.GetComponent<ChoppableTree>().GetHit();
         }
+    }
+
+    IEnumerator SwingSoundDelay()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2782786854785325451}
   - component: {fileID: -6579008286499611925}
   m_Layer: 5
-  m_Name: Log
+  m_Name: Plank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa66fe662bf327c4fb8f396727617a90, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b817cbabc887fd4189cf193a166eb5b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -116,9 +116,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrashable: 0
-  thisName: Log
-  thisDescription: This is a log
-  thisFunctionality: 'make something '
+  thisName: Plank
+  thisDescription: 'A wooden plank crafted from log. It is a basic building materials
+    commonly used for crafting tools, structures. '
+  thisFunctionality: 'Used as a crafting materials for tools, weapon and building
+    parts '
   isConsumable: 0
   healthEffect: 0
   caloriesEffect: 0
