@@ -34,6 +34,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public bool isSelected;
 
+    public bool isUseable;
+    public GameObject itemPendingToBeUsed;
+
     private void Start()
     {
         itemInfoUI = InventorySystem.Instance.ItemInfoUI;
@@ -88,9 +91,50 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 EquipSystem.Instance.AddToQuickSlots(gameObject);
                 isInsideQuickSlot = true;
             }
+
+            if (isUseable)
+            {
+                itemPendingToBeUsed = gameObject;
+                UseItem();
+            }
         }
 
 
+    }
+
+    private void UseItem()
+    {
+        itemInfoUI.SetActive(false);
+
+        InventorySystem.Instance.isOpen = false;
+        InventorySystem.Instance.inventoryScreenUI.SetActive(false);
+
+        CraftingSystem.instance.isOpen = false;
+        CraftingSystem.instance.craftingScreenUI.SetActive(false);
+        CraftingSystem.instance.toolsScreenUI.SetActive(false);
+        CraftingSystem.instance.survivalScreenUI.SetActive(false);
+        CraftingSystem.instance.refineScreenUI.SetActive(false);
+        CraftingSystem.instance.construcionScreenUI.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        SelectionManager.instance.EnableSelection();
+        SelectionManager.instance.enabled = true;
+
+        switch (gameObject.name)
+        {
+            case "Foundation(Clone)":
+                ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel");
+                break;
+            case "Foundation":
+                ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel");
+
+                break;
+            default:
+                // do nothing
+                break;
+        }
     }
 
     // Triggered when the mouse button is released over the item that has this script.
@@ -101,7 +145,14 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             if (isConsumable && itemPendingConsumption == gameObject)
             {
                 DestroyImmediate(gameObject);
-                InventorySystem.Instance.ReCalculeList();
+                InventorySystem.Instance.ReCalculateList();
+                CraftingSystem.instance.RefeshNeededItems();
+            }
+
+            if (isUseable && itemPendingToBeUsed == gameObject)
+            {
+                DestroyImmediate(gameObject);
+                InventorySystem.Instance.ReCalculateList();
                 CraftingSystem.instance.RefeshNeededItems();
             }
         }

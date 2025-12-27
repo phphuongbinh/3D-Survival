@@ -108,7 +108,7 @@ public class InventorySystem : MonoBehaviour
 
         TriggerPickupPopup(itemName, sprite);
 
-        ReCalculeList();
+        ReCalculateList();
         CraftingSystem.instance.RefeshNeededItems();
     }
 
@@ -173,11 +173,11 @@ public class InventorySystem : MonoBehaviour
             }
         }
 
-        ReCalculeList();
+        ReCalculateList();
         CraftingSystem.instance.RefeshNeededItems();
     }
 
-    public void ReCalculeList()
+    public void ReCalculateList()
     {
         itemList.Clear();
 
