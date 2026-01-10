@@ -20,7 +20,7 @@ public class EquipableItem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0)
             && InventorySystem.Instance.isOpen == false
             && CraftingSystem.instance.isOpen == false
-            && SelectionManager.instance.handIsVisible == false)
+            && SelectionManager.instance.handIsVisible == false && !ConstructionManager.Instance.inConstructionMode)
         {
             SoundManager.Instance.PlaySound(SoundManager.Instance.toolSwingSound);
             animator.SetTrigger("hit");

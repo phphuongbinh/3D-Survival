@@ -35,7 +35,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public bool isSelected;
 
     public bool isUseable;
-    public GameObject itemPendingToBeUsed;
+    public GameObject itemToBeDestroyed;
 
     private void Start()
     {
@@ -94,7 +94,8 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             if (isUseable)
             {
-                itemPendingToBeUsed = gameObject;
+                ConstructionManager.Instance.itemToBeDestroyed = gameObject;
+                gameObject.SetActive(false);
                 UseItem();
             }
         }
@@ -129,7 +130,12 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 break;
             case "Foundation":
                 ConstructionManager.Instance.ActivateConstructionPlacement("FoundationModel");
-
+                break;
+            case "Wall(Clone)":
+                ConstructionManager.Instance.ActivateConstructionPlacement("WallModel");
+                break;
+            case "Wall":
+                ConstructionManager.Instance.ActivateConstructionPlacement("WallModel");
                 break;
             default:
                 // do nothing
@@ -149,12 +155,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
                 CraftingSystem.instance.RefeshNeededItems();
             }
 
-            if (isUseable && itemPendingToBeUsed == gameObject)
-            {
-                DestroyImmediate(gameObject);
-                InventorySystem.Instance.ReCalculateList();
-                CraftingSystem.instance.RefeshNeededItems();
-            }
         }
     }
 

@@ -116,11 +116,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 881277269072129652, guid: 47356d574ebc3a545bfaef26eb02a2ea, type: 3}
       propertyPath: treeHealth
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 881277269072129652, guid: 47356d574ebc3a545bfaef26eb02a2ea, type: 3}
       propertyPath: treeMaxHealth
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
