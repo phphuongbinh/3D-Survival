@@ -49,7 +49,4 @@ public class ItemSlot : MonoBehaviour, IDropHandler
 
     }
 
-
-
-
 }
