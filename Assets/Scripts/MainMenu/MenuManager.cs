@@ -62,4 +62,9 @@ public class MenuManager : MonoBehaviour
             SelectionManager.instance.GetComponent<SelectionManager>().enabled = true;
         }
     }
+
+    public void TempSaveGame()
+    {
+        SaveManager.Instance.SaveGame();
+    }
 }
