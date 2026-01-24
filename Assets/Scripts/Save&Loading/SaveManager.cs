@@ -33,6 +33,8 @@ public class SaveManager : MonoBehaviour
     String binaryPath;
 
     string fileName = "SaveGame";
+    public bool isLoading;
+
 
     private void Start()
     {
@@ -63,8 +65,16 @@ public class SaveManager : MonoBehaviour
         AllGameData data = new AllGameData();
 
         data.playerData = GetPlayerData();
+        data.enviromentData = GetEnviromentData();
 
         SavingTypeSwitch(data, slotNumber);
+    }
+
+    public EnviromentData GetEnviromentData()
+    {
+        List<string> itemPickedup = InventorySystem.Instance.itemPickedup;
+
+        return new EnviromentData(itemPickedup);
     }
 
     private PlayerData GetPlayerData()
@@ -83,7 +93,27 @@ public class SaveManager : MonoBehaviour
         playerPosAndRot[4] = PlayerState.Instance.playerBody.transform.rotation.y;
         playerPosAndRot[5] = PlayerState.Instance.playerBody.transform.rotation.z;
 
-        return new PlayerData(playerStats, playerPosAndRot);
+        string[] inventory = InventorySystem.Instance.itemList.ToArray();
+
+        string[] quickSlots = GetQuickSlotsContent();
+
+        return new PlayerData(playerStats, playerPosAndRot, inventory, quickSlots);
+    }
+
+    private string[] GetQuickSlotsContent()
+    {
+        List<string> temp = new List<string>();
+        foreach (GameObject slot in EquipSystem.Instance.quickSlotsList)
+        {
+            if (slot.transform.childCount != 0)
+            {
+                string name = slot.transform.GetChild(0).name;
+                string str2 = "(Clone)";
+                string cleanName = name.Replace(str2, "");
+                temp.Add(cleanName);
+            }
+        }
+        return temp.ToArray();
     }
 
     #endregion 
@@ -110,7 +140,24 @@ public class SaveManager : MonoBehaviour
         SetPlayerData(LoadingTypeSwitch(slotNumber).playerData);
 
         // Enviroment Data
+        SetEnviromentData(LoadingTypeSwitch(slotNumber).enviromentData);
 
+    }
+
+    private void SetEnviromentData(EnviromentData enviromentData)
+    {
+        foreach (Transform itemType in EnviromentManager.Instance.allItems.transform)
+        {
+            foreach (Transform item in itemType.transform)
+            {
+                if (enviromentData.pickedupItems.Contains(item.name))
+                {
+                    Destroy(item.gameObject);
+                }
+            }
+        }
+
+        InventorySystem.Instance.itemPickedup = enviromentData.pickedupItems;
     }
 
     private void SetPlayerData(PlayerData playerData)
@@ -136,10 +183,29 @@ public class SaveManager : MonoBehaviour
         loadedRosition.z = playerData.playerPositionAndRotaion[5];
 
         PlayerState.Instance.playerBody.transform.rotation = Quaternion.Euler(loadedPosition);
+
+        // SEtting the inventory content
+        foreach (string item in playerData.inventoryContent)
+        {
+            InventorySystem.Instance.AddToInventory(item);
+        }
+
+        // SEtting the quick slots content
+        foreach (string item in playerData.quickSlotsContent)
+        {
+            GameObject availableSlot = EquipSystem.Instance.FindNextEmptySlot();
+            var itemToAdd = Instantiate(Resources.Load<GameObject>(item));
+            itemToAdd.transform.SetParent(availableSlot.transform, false);
+        }
+
+
+
+        isLoading = false;
     }
 
     public void StartLoadedGame(int slotNumber)
     {
+        isLoading = true;
         SceneManager.LoadScene("GameScene");
 
         StartCoroutine(DelayedLoading(slotNumber));
